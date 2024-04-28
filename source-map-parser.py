@@ -34,7 +34,7 @@ def read_remote_resource(path):
     try:
         return requests.get(path).json()
 
-    except (ConnectionError, JSONDecodeError, MissingSchemaError) as e:
+    except (ConnectionError, JSONDecodeError, MissingSchema) as e:
         if e.__class__.__name__ == "ConnectionError":
             exit(f"[{path}] Error connecting to remote resource")
 
@@ -43,7 +43,7 @@ def read_remote_resource(path):
                 f"[{path}] Provided JSON has not been parsed as valid JSON, check and try again"
             )
 
-        elif e.__class__.__name__ == "MissingSchemaError":
+        elif e.__class__.__name__ == "MissingSchema":
             exit(
                 f"[{path}] Provided URL is missing a schema, add a schema and try again"
             )
